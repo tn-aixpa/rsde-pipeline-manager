@@ -1,0 +1,26 @@
+server:
+  port: ${SERVER_PORT:}
+
+spring:
+  h2.console.enabled: false
+
+core:
+  token: ${DHCORE_ACCESS_TOKEN:}
+  apiEndopint: ${DHCORE_ENDPOINT:}
+  configUrl: ${CONFIG_URL:./config.yml}  
+
+
+# DB CONFIGURATION
+jdbc:
+  dialect: ${JDBC_DIALECT:org.hibernate.dialect.H2Dialect}
+  driver: ${JDBC_DRIVER:org.h2.Driver}
+  url: ${JDBC_URL:jdbc:h2:file:./data/db}
+  user: ${JDBC_USER:rsde}
+  password: ${JDBC_PASS:rsde}
+  show-sql: false
+  max-pool-size: ${JDBC_MAX_POOL_SIZE:10}
+  min-pool-size: ${JDBC_MIN_POOL_SIZE:10}
+  idle-timeout: ${JDBC_IDLE_TIMEOUT:600000}
+  keep-alive-timeout: ${JDBC_KEEP_ALIVE_TIMEOUT:0}
+  connection-timeout: ${JDBC_CONNECTION_TIMEOUT:30000}
+  data-source-properties: {}

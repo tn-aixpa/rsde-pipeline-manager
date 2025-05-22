@@ -1,0 +1,20 @@
+elaborations:
+  - name: flood
+    projectId: flood-detection
+    taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
+    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796    
+
+  - name: forest
+    projectId: docker-sentinel
+    taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
+    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
+
+  - name: land
+    projectId: docker-sentinel
+    taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
+    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
+    
+  - name: test
+    projectId: parcheggi-scheduler
+    taskId: kfp+pipeline://parcheggi-scheduler/b1f2ff3eec8f4bd48c648e2211248cd7
+    workflowId: kfp://parcheggi-scheduler/pipeline_sarimax_regression:78de181b065d46348205cb6e9a8a4ce2
