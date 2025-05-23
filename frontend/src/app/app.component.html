@@ -1,0 +1,27 @@
+<it-header
+  slimTitle="Provinicia Autonoma di Trento"
+  slimTitleLink="/"
+  [showSearch]="false"
+  [sticky]="true"
+  [expand]="true"
+  #headerEl>
+
+  <ng-container slimRightZone>
+    <it-dropdown mode="nav">
+      <span button>Utente</span>
+      <ng-container list>
+        <it-dropdown-item>Logout</it-dropdown-item>
+      </ng-container>
+    </it-dropdown>
+  </ng-container>
+  <ng-container brand>
+      <a href="#">
+        <it-icon name="pa"></it-icon>
+        <div class="it-brand-text">
+          <div class="it-brand-title">Protezione Civile</div>
+          <div class="it-brand-tagline d-none d-md-block">Servizi elaborazione dati</div>
+        </div>
+      </a>
+    </ng-container>
+</it-header>  
+<router-outlet />

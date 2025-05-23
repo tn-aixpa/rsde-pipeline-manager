@@ -1,0 +1,37 @@
+<div class="row justify-content-md-center">
+    <div class="col-md-8 my-5">
+        <h1 class="bd-titme">Elaborazioni</h1>
+        <div class="row">
+            <div class="col d-flex align-items-end flex-column">
+                <button itButton="primary">Aggiungi</button>
+            </div>
+        <div class="bd-example">
+        <it-list>
+            <it-list-item iconLeft="true" href="#" externalLink="true" *ngFor="let val of pageData.content">
+            <it-icon name="check-circle" color="success" icon *ngIf="val.status == 'COMPLETED'"></it-icon>
+            <it-icon name="error" color="danger" icon *ngIf="val.status == 'ERROR'"></it-icon>
+            <it-icon name="clock" color="warning" icon *ngIf="val.status == 'RUNNING'"></it-icon>
+            <div>
+                <h4 class="text m-0">{{val.localName}}</h4>
+                <p class="small m-0">{{val.name}}</p>
+                <p class="small m-0">{{val.createdAt | date:'dd/MM/yyyy HH:mm'}}</p>
+            </div>
+            <ng-container multiple>
+                <a href="#" aria-label="Testo - Azione 1">
+                <it-icon name="delete" color="danger"></it-icon>
+                </a>
+            </ng-container>
+            </it-list-item>
+        </it-list>
+        <div class="mt-4">
+            <it-pagination
+            [currentPage]="pageData.number / changerValue"
+            [pageNumbers]="pageData.totalPages || 0"
+            alignment="center"
+            [currentChanger]="changerValue"
+            [changerValues]="changerValues"
+            (pageEvent)="onPageChange($event)"
+            (changerEvent)="onChangerEvent($event)"></it-pagination>
+        </div>
+    </div>
+</div>

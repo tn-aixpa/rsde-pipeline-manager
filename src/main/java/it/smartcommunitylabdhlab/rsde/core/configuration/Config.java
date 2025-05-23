@@ -2,17 +2,17 @@ package it.smartcommunitylabdhlab.rsde.core.configuration;
 
 import java.util.List;
 
-import it.smartcommunitylabdhlab.rsde.common.bean.Elaboration;
+import it.smartcommunitylabdhlab.rsde.common.bean.ElaborationTemplate;
 
 public class Config {
 
-    private List<Elaboration> elaborations;
+    private List<ElaborationTemplate> elaborations;
 
-    public List<Elaboration> getElaborations() {
+    public List<ElaborationTemplate> getElaborations() {
 	return elaborations;
     }
 
-    public void setElaborations(List<Elaboration> elaborations) {
+    public void setElaborations(List<ElaborationTemplate> elaborations) {
 	this.elaborations = elaborations;
     }
 

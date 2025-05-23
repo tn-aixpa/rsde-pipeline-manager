@@ -2,19 +2,29 @@ elaborations:
   - name: flood
     projectId: flood-detection
     taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
-    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796    
+    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
+    tag: water
 
   - name: forest
     projectId: docker-sentinel
     taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
     workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
-
+    tag: forest
+    fixedParameters:
+      input1: bosco
+      input2: data_s2_deforestation
+      
   - name: land
     projectId: docker-sentinel
     taskId: kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd
     workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
+    tag: geo
     
   - name: test
     projectId: parcheggi-scheduler-2025   
     taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
     workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826
+    tag: forest
+    fixedParameters:
+      input1: bosco
+      input2: data_s2_deforestation

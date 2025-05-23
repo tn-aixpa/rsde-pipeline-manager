@@ -1,144 +1,94 @@
 package it.smartcommunitylabdhlab.rsde.common.bean;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class Elaboration {
 
     private String id;
-    private String projectId;
-    private String name;
     private String coreId;
-    private String workflowId;
-    private String taskId;
-    private String geomtry;
-    private Date eventDate;
-    private String type;
+    private String name;
+    private String localName;
     private String status;
-    private String artifactName;
-    private String link;
     private Map<String, String> parameters;
+    private String tag;
+    private List<String> links;
+    private Date createdAt;
+    private Date updatedAt;
 
     public Elaboration() {
     }
 
-    public Elaboration(String id, String projectId, String name, String workflow, String taskId, String task,
-	    String geomtry, String artifactName, Date eventDate, String type) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.projectId = projectId;
-	this.workflowId = workflow;
-	this.taskId = taskId;
-	this.workflowId = task;
-	this.geomtry = geomtry;
-	this.artifactName = artifactName;
-	this.eventDate = eventDate;
-	this.type = type;
-    }
-
-    public String getProjectId() {
-	return projectId;
-    }
-
-    public void setProjectId(String projectId) {
-	this.projectId = projectId;
-    }
-
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
-    public String getArtifactName() {
-	return artifactName;
+    public String getLocalName() {
+        return localName;
     }
-
-    public void setArtifactName(String artifactName) {
-	this.artifactName = artifactName;
+    public void setLocalName(String localName) {
+        this.localName = localName;
     }
 
     public String getStatus() {
-	return status;
+        return status;
     }
 
     public void setStatus(String status) {
-	this.status = status;
-    }
-
-    public Date getEventDate() {
-	return eventDate;
-    }
-
-    public void setEventDate(Date eventDate) {
-	this.eventDate = eventDate;
-    }
-
-    public String getType() {
-	return type;
-    }
-
-    public void setType(String type) {
-	this.type = type;
+        this.status = status;
     }
 
     public String getId() {
-	return id;
+        return id;
     }
 
     public void setId(String id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getCoreId() {
-	return coreId;
+        return coreId;
     }
-
     public void setCoreId(String coreId) {
-	this.coreId = coreId;
+        this.coreId = coreId;
     }
-
-    public String getWorkflowId() {
-	return workflowId;
-    }
-
-    public void setWorkflowId(String workflowId) {
-	this.workflowId = workflowId;
-    }
-
-    public String getTaskId() {
-	return taskId;
-    }
-
-    public void setTaskId(String taskId) {
-	this.taskId = taskId;
-    }
-
-    public String getGeomtry() {
-	return geomtry;
-    }
-
-    public void setGeomtry(String geomtry) {
-	this.geomtry = geomtry;
-    }
-
-    public String getLink() {
-	return link;
-    }
-
-    public void setLink(String link) {
-	this.link = link;
-    }
-
     public Map<String, String> getParameters() {
-	return parameters;
+        return parameters;
     }
 
     public void setParameters(Map<String, String> parameters) {
-	this.parameters = parameters;
+        this.parameters = parameters;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public List<String> getLinks() {
+        return links;
+    }
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

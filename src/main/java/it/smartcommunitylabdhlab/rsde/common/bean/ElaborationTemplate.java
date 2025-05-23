@@ -8,50 +8,58 @@ public class ElaborationTemplate {
     private String name;
     private String taskId;
     private String workflowId;
-    private Map<String, String> parameters = new java.util.HashMap<>();
+    private String tag;
+    private Map<String, String> fixedParameters; 
 
     public ElaborationTemplate() {
-	super();
+        super();
     }
 
     public String getProjectId() {
-	return projectId;
+        return projectId;
     }
 
     public void setProjectId(String projectId) {
-	this.projectId = projectId;
+        this.projectId = projectId;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getTaskId() {
-	return taskId;
+        return taskId;
     }
 
     public void setTaskId(String taskId) {
-	this.taskId = taskId;
+        this.taskId = taskId;
     }
 
     public String getWorkflowId() {
-	return workflowId;
+        return workflowId;
     }
 
     public void setWorkflowId(String workflow) {
-	this.workflowId = workflow;
+        this.workflowId = workflow;
     }
 
-    public Map<String, String> getParameters() {
-	return parameters;
+    public String getTag() {
+        return tag;
     }
 
-    public void setParameters(Map<String, String> parameters) {
-	this.parameters = parameters;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Map<String, String> getFixedParameters() {
+        return fixedParameters;
+    }
+    public void setFixedParameters(Map<String, String> fixedParameters) {
+        this.fixedParameters = fixedParameters;
     }
 
 }

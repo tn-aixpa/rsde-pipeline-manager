@@ -19,15 +19,14 @@ package it.smartcommunitylabdhlab.rsde.persistence;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
 
 import org.springframework.jdbc.datasource.ConnectionHandle;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.TransactionSystemException;
 
 /**
  * @author raman
@@ -38,14 +37,12 @@ public class IsolationSupportHibernateJpaDialect extends HibernateJpaDialect {
     private ThreadLocal<Connection> connectionThreadLocal = new ThreadLocal<Connection>();
     private ThreadLocal<Integer> originalIsolation = new ThreadLocal<Integer>();
 
+    @SuppressWarnings("null")
     @Override
     public Object beginTransaction(EntityManager entityManager, TransactionDefinition definition)
         throws PersistenceException, SQLException, TransactionException {
         boolean readOnly = definition.isReadOnly();
         ConnectionHandle handle = this.getJdbcConnection(entityManager, readOnly);
-        if (handle == null) {
-            throw new TransactionSystemException("invalid connection handle");
-        }
         Connection connection = handle.getConnection();
         connectionThreadLocal.set(connection);
         originalIsolation.set(DataSourceUtils.prepareConnectionForTransaction(connection, definition));
@@ -55,6 +52,7 @@ public class IsolationSupportHibernateJpaDialect extends HibernateJpaDialect {
         return prepareTransaction(entityManager, readOnly, definition.getName());
     }
 
+    @SuppressWarnings("null")
     @Override
     public void cleanupTransaction(Object transactionData) {
         try {

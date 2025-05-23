@@ -4,22 +4,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-import it.smartcommunitylabdhlab.rsde.common.bean.Elaboration;
+import it.smartcommunitylabdhlab.rsde.common.bean.ElaborationTemplate;
 import it.smartcommunitylabdhlab.rsde.core.configuration.Config;
 
 @Component
@@ -31,27 +31,31 @@ public class ConfigurationManager {
     @Value("${core.configUrl}")
     private String configPath;
 
-    private List<Elaboration> templates = new ArrayList<>();
+    private Map<String, ElaborationTemplate> templates = new HashMap<>();
 
     @PostConstruct()
     private void init() throws FileNotFoundException {
-	mapper = new ObjectMapper(new YAMLFactory());
-	mapper.findAndRegisterModules();
-	parseElaborationonfiguration(new FileInputStream(configPath));
+        mapper = new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
+        parseElaborationonfiguration(new FileInputStream(configPath));
     }
 
     public void parseElaborationonfiguration(InputStream source) {
-	try {
-	    Config config = mapper.readValue(source, Config.class);
-	    this.templates = config.getElaborations();
-	} catch (IOException e) {
-	    logger.error(e.getMessage());
-	}
+        try {
+            Config config = mapper.readValue(source, Config.class);
+            config.getElaborations().forEach(t -> this.templates.put(t.getName(), t));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
 
     }
 
-    public List<Elaboration> getTemplates() {
-	return templates;
+    public ElaborationTemplate getTemplate(String name) {
+        return templates.get(name);
+    }
+
+    public List<ElaborationTemplate> getTemplates() {
+        return new LinkedList<>(templates.values());
     }
 
 }

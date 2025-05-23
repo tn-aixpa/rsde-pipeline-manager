@@ -1,9 +1,8 @@
 package it.smartcommunitylabdhlab.rsde.config;
 
-import java.beans.PropertyVetoException;
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
