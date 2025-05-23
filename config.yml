@@ -15,6 +15,6 @@ elaborations:
     workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796
     
   - name: test
-    projectId: parcheggi-scheduler
-    taskId: kfp+pipeline://parcheggi-scheduler/b1f2ff3eec8f4bd48c648e2211248cd7
-    workflowId: kfp://parcheggi-scheduler/pipeline_sarimax_regression:78de181b065d46348205cb6e9a8a4ce2
+    projectId: parcheggi-scheduler-2025   
+    taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
+    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826

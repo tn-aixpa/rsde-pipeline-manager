@@ -81,7 +81,7 @@ public class ElaborationService {
 	DHRun input = new DHRun();
 	input.setProject(el.getProjectId());
 	Spec spec = new Spec(el.getTaskId(), el.getWorkflowId());
-	if (!el.getParameters().isEmpty())
+	if (el.getParameters()!=null && !el.getParameters().isEmpty())
 	    spec.setParameters(el.getParameters());
 	input.setSpec(spec);
 	try {
