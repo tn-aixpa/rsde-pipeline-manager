@@ -3,24 +3,24 @@
         <h1 class="bd-titme">Elaborazioni</h1>
         <div class="row">
             <div class="col d-flex align-items-end flex-column">
-                <button itButton="primary">Aggiungi</button>
+                <button itButton="primary" class="mb-3" routerLink="/create">Aggiungi</button>
             </div>
         <div class="bd-example">
         <it-list>
-            <it-list-item iconLeft="true" href="#" externalLink="true" *ngFor="let val of pageData.content">
-            <it-icon name="check-circle" color="success" icon *ngIf="val.status == 'COMPLETED'"></it-icon>
-            <it-icon name="error" color="danger" icon *ngIf="val.status == 'ERROR'"></it-icon>
-            <it-icon name="clock" color="warning" icon *ngIf="val.status == 'RUNNING'"></it-icon>
-            <div>
-                <h4 class="text m-0">{{val.localName}}</h4>
-                <p class="small m-0">{{val.name}}</p>
-                <p class="small m-0">{{val.createdAt | date:'dd/MM/yyyy HH:mm'}}</p>
-            </div>
-            <ng-container multiple>
-                <a href="#" aria-label="Testo - Azione 1">
-                <it-icon name="delete" color="danger"></it-icon>
-                </a>
-            </ng-container>
+            <it-list-item iconLeft="true" href="/{{val.id}}" *ngFor="let val of pageData.content" externalLink="true">
+                <it-icon name="check-circle" color="success" icon *ngIf="val.status == 'COMPLETED'"></it-icon>
+                <it-icon name="error" color="danger" icon *ngIf="val.status == 'ERROR'"></it-icon>
+                <it-icon name="clock" color="warning" icon *ngIf="val.status == 'RUNNING'"></it-icon>
+                <div>
+                    <h4 class="text m-0">{{val.localName}}</h4>
+                    <p class="small m-0">{{val.name}}</p>
+                    <p class="small m-0">{{val.createdAt | date:'dd/MM/yyyy HH:mm'}}</p>
+                </div>
+                <ng-container multiple>
+                    <a (click)="deleteDialog($event, val, deleteModal)">
+                    <it-icon name="delete" color="danger"></it-icon>
+                    </a>
+                </ng-container>
             </it-list-item>
         </it-list>
         <div class="mt-4">
@@ -35,3 +35,12 @@
         </div>
     </div>
 </div>
+
+<it-modal #deleteModal="itModal" closeButton="false" popconfirm="true">
+    <p>Sel sicuro di voler eliminare questa elaborazione?</p>
+
+    <ng-container footer>
+      <button itButton="primary" size="sm" type="button" (click)="doDelete(deleteModal)">Elimina</button>
+      <button itButton="outline-secondary" size="sm" type="button" data-bs-dismiss="modal">Annulla</button>
+    </ng-container>
+  </it-modal>

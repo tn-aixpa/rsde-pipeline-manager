@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ItHeaderComponent, ItDropdownComponent, ItDropdownItemComponent, ItIconComponent } from 'design-angular-kit';
+import { ItHeaderComponent, ItDropdownComponent, ItDropdownItemComponent, ItIconComponent, ItNotificationsComponent } from 'design-angular-kit';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ItHeaderComponent, ItDropdownComponent, ItDropdownItemComponent, ItIconComponent],
+  imports: [RouterOutlet, ItHeaderComponent, ItDropdownComponent, ItDropdownItemComponent, ItIconComponent, ItNotificationsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

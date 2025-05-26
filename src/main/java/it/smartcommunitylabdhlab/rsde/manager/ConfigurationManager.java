@@ -14,6 +14,7 @@ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,18 +30,18 @@ public class ConfigurationManager {
     private ObjectMapper mapper;
 
     @Value("${core.configUrl}")
-    private String configPath;
+    private Resource configPath;
 
     private Map<String, ElaborationTemplate> templates = new HashMap<>();
 
     @PostConstruct()
-    private void init() throws FileNotFoundException {
+    private void init() throws IOException {
         mapper = new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
-        parseElaborationonfiguration(new FileInputStream(configPath));
+        parseElaborationConfiguration(configPath.getInputStream());
     }
 
-    public void parseElaborationonfiguration(InputStream source) {
+    public void parseElaborationConfiguration(InputStream source) {
         try {
             Config config = mapper.readValue(source, Config.class);
             config.getElaborations().forEach(t -> this.templates.put(t.getName(), t));

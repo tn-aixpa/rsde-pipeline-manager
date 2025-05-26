@@ -7,7 +7,7 @@ spring:
 core:
   token: ${DHCORE_ACCESS_TOKEN:}
   apiEndopint: ${DHCORE_ENDPOINT:}
-  configUrl: ${CONFIG_URL:./config.yml}  
+  configUrl: ${CONFIG_URL:classpath:config.yml}  
 
 
 # DB CONFIGURATION

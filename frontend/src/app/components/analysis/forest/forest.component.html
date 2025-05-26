@@ -1,0 +1,30 @@
+<div *ngIf="formContainer" [formGroup]="formContainer">
+<div class="row mt-3">
+    <div class="col">
+        <app-map-input (drawEvent)="getPolyline($event)"></app-map-input> 
+        <div class="form-feedback just-validate-error-label">
+            <!-- Custom errors-->
+            <div *ngIf="formContainer.get('parameters')!.get('geometry')!.touched && formContainer.get('parameters')!.get('geometry')!.hasError('required')">Il campo è obbligatorio</div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row mt-3" formGroupName="parameters">
+    <div class="col">
+        <it-select label="Anno inizio" [options]="years" formControlName="startYear" required></it-select>
+    </div>
+    <div class="col">
+        <it-select label="Anno fine" [options]="years" formControlName="endYear" required></it-select>
+    </div>
+    <div class="col">
+        <it-input
+            label="Nome output"
+            placeholder="Nome output"
+            type="text"
+            formControlName="outputName" required></it-input>
+
+    </div>
+</div>
+
+</div>

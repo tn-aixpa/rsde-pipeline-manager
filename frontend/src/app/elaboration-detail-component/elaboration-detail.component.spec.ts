@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ElaborationDetailComponentComponent } from './elaboration-detail-component.component';
+import { ElaborationDetailComponent } from './elaboration-detail.component';
 
 describe('ElaborationDetailComponentComponent', () => {
-  let component: ElaborationDetailComponentComponent;
-  let fixture: ComponentFixture<ElaborationDetailComponentComponent>;
+  let component: ElaborationDetailComponent;
+  let fixture: ComponentFixture<ElaborationDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ElaborationDetailComponentComponent]
+      imports: [ElaborationDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ElaborationDetailComponentComponent);
+    fixture = TestBed.createComponent(ElaborationDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

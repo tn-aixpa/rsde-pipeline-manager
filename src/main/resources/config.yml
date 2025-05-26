@@ -1,0 +1,6 @@
+elaborations:
+  - name: flood
+    projectId: flood-detection
+    taskId: kfp+pipeline://<key-task>
+    workflowId: kfp://<key-workflow>
+    tag: water

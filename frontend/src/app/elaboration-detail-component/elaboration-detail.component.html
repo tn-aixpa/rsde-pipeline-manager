@@ -1,0 +1,13 @@
+<div class="row justify-content-md-center">
+    <div class="col-md-8 my-5" *ngIf="elaboration">
+        <h3>Elaborazione {{elaboration.localName}}</h3>
+        <p>{{elaboration.name}}</p>
+        <p>Stato elaborazione: <b>{{elaboration.status == 'COMPLETED' ? 'Completato' : elaboration.status == 'ERROR' ? 'Errore' : 'In corso'}}</b></p>
+        <p>Data inizio: <b>{{elaboration.createdAt | date:'dd/MM/yyyy HH:mm'}}</b></p>
+        <p>Data fine: <b>{{elaboration.status != 'RUNNING' ? (elaboration.updatedAt | date:'dd/MM/yyyy HH:mm') : 'In corso'}}</b></p>
+
+        <app-forest-details *ngIf="elaboration.name == 'forest'" [elaboration]="elaboration"></app-forest-details>
+        <app-flood-details *ngIf="elaboration.name == 'flood'" [elaboration]="elaboration"></app-flood-details>
+        <app-land-details *ngIf="elaboration.name == 'land'" [elaboration]="elaboration"></app-land-details>
+    </div>
+</div>      
