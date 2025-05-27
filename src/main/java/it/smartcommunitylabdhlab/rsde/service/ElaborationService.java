@@ -1,6 +1,9 @@
 package it.smartcommunitylabdhlab.rsde.service;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -9,7 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -82,10 +87,10 @@ public class ElaborationService {
     }
 
     public Elaboration launchRemoteElaboration(Elaboration el, ElaborationTemplate template) {
-		el.setCoreId(UUID.randomUUID().toString());
-		el.setStatus("RUNNING");
-		return el;
-		// return doRemote(el, template);
+		// el.setCoreId(UUID.randomUUID().toString());
+		// el.setStatus("RUNNING");
+		// return el;
+		return doRemote(el, template);
 	}
 
 
@@ -98,16 +103,19 @@ public class ElaborationService {
 		logger.debug("syncState");
 		elEntityService.searchByStatus("RUNNING").forEach(e -> {
 			try {
-				String url = dhUrl + postfix + e.getCoreId();
-				// HttpHeaders headers = new HttpHeaders();
-				// headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-				// headers.setContentType(MediaType.APPLICATION_JSON);
-				// headers.setBearerAuth(dhToken);
-				// HttpEntity<String> entity = new HttpEntity<>(headers);
-				// String res = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-				// DHRun run = converter.toEntity(res, DHRun.class);
-				// e.setStatus(run.getStatus().state);
-				// elEntityService.saveEntity(e);
+				String url = dhUrl + postfix + "/" + e.getProject() + "/runs/" + e.getCoreId();
+				HttpHeaders headers = new HttpHeaders();
+				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+				headers.setContentType(MediaType.APPLICATION_JSON);
+				headers.setBearerAuth(dhToken);
+				HttpEntity<String> entity = new HttpEntity<>(headers);
+				String res = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
+				DHRun run = converter.toEntity(res, DHRun.class);
+				if (!run.getStatus().state.equals(e.getStatus())) {
+					e.setUpdatedAt(new Date());
+				}
+				e.setStatus(run.getStatus().state);
+				elEntityService.saveEntity(e);
 			} catch (Exception e1) {
 				logger.error("error in syncState", e1);
 			}
@@ -139,12 +147,35 @@ public class ElaborationService {
 			String res = restTemplate.exchange(url, HttpMethod.POST, entity, String.class).getBody();
 			DHRun run = converter.toEntity(res, DHRun.class);
 			el.setCoreId(run.getId());
-			el.setStatus(run.getStatus().state);
+			el.setStatus("RUNNING");
 			return el;
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 
+    }
+
+    @SuppressWarnings({ "unchecked" })
+	public String generatePresignedUrl(String id, String name) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setBearerAuth(dhToken);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+
+		ElaborationEntity e = elEntityService.findById(id);
+		String url = dhUrl + postfix + e.getProject() + "/artifacts?name=" + name;
+		Map<String, Object> res = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
+
+		if (res != null) {
+			Collection<Map<String, Object>> content = (Collection<Map<String, Object>>) res.getOrDefault("content", Collections.emptyList());
+			if (content.size() > 0) {
+				String artifactId = (String) content.iterator().next().get("id");
+				url = dhUrl + postfix + e.getProject() + "/artifacts/" + artifactId + "/files/download";
+				return restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
+			}
+		}
+		throw new RuntimeException("Artifact not found");
     }
 
 }

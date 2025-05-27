@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } 
 import * as L from 'leaflet';
 import { MapInputComponent } from '../components/map-input/map-input.component';
 import { ForestComponent } from '../components/analysis/forest/forest.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -29,7 +29,7 @@ export class ElaborationCreateComponent {
       localName: ['', Validators.required]
     });
 
-  constructor(private _fb: FormBuilder, private elaborationService: ElaborationService, private readonly notificationService: ItNotificationService) {}
+  constructor(private _fb: FormBuilder, private router: Router, private elaborationService: ElaborationService, private readonly notificationService: ItNotificationService) {}
 
   protected save(): void {
     this.eForm.markAllAsTouched();
@@ -39,6 +39,7 @@ export class ElaborationCreateComponent {
     console.log(this.eForm.value);
     this.elaborationService.createElaboration(this.eForm.value as Elaboration).subscribe((res) => {
       this.notificationService.success('Successo', 'Elaborazione creata con successo');
+      this.router.navigate(['/']);
     });
   }
 }

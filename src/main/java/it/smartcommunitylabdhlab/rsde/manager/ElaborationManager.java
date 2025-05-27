@@ -66,4 +66,8 @@ public class ElaborationManager {
 		return elaborationService.loadAll(pageable, tag);
     }
 
+    public String getDownloadLink(String id, String name) throws NoSuchElaborationException {
+		return elaborationService.generatePresignedUrl(id, name);
+    }
+
 }

@@ -55,7 +55,7 @@ public class ElaborationEntityService {
 	    return elRepository.findByStatus(status);
     }
 
-    public Object findById(String id) {
+    public ElaborationEntity findById(String id) {
         return elRepository.findById(id).orElse(null);
     }
 

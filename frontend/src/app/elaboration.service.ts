@@ -17,7 +17,7 @@ export interface PaginatedData<T> {
 
 export class Elaboration {
   constructor(
-    public id?: number, 
+    public id?: string, 
     public name?: string, 
     public localName?: string, 
     public status?: string, 
@@ -43,12 +43,16 @@ export class ElaborationService {
     return this.httpClient.get<Elaboration>(`${environment.SERVER_URL}/api/elaborations/${id}`);
   }
 
-  deleteElaboration(id: number): Observable<void> {
+  deleteElaboration(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${environment.SERVER_URL}/api/elaborations/${id}`);
   }
 
   createElaboration(elaboration: Elaboration): Observable<Elaboration> {
     return this.httpClient.post<Elaboration>(`${environment.SERVER_URL}/api/elaborations`, elaboration);
+  }
+
+  generatePresignedUrl(id: string, name: string) : Observable<any> {
+    return this.httpClient.get<any>(`${environment.SERVER_URL}/api/elaborations/${id}/download/${name}`);
   }
 
 }
