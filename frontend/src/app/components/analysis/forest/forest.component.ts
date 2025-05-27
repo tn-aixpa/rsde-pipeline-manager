@@ -33,8 +33,6 @@ export class ForestComponent implements OnInit {
         endYear: ['', Validators.required],
         outputName: ['', Validators.required],
         geometry: ['', Validators.required],
-        input1: ['bosco'],
-        inptu2: ['data_s2_deforestation']
       }));
     }
   }

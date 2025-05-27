@@ -20,9 +20,10 @@
 
             <div class="row mt-3">
                 <app-forest [formContainer]="eForm" *ngIf="eForm.get('name')?.value == 'forest'"></app-forest>
+                <app-flood [formContainer]="eForm" *ngIf="eForm.get('name')?.value == 'flood'"></app-flood>
             </div>
 
-            <div class="row">
+            <div class="row" *ngIf="eForm.get('name')?.value">
                 <div class="col d-flex flex-row-reverse">
                     <button itButton="primary" class="mb-3  me-2" routerLink="/create" (click)="save()">Salva</button>
                     <button itButton="outline-primary" class="mb-3 mx-3 me-2" routerLink="/">Annulla</button>

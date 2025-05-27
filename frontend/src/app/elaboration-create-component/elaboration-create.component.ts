@@ -7,11 +7,12 @@ import { MapInputComponent } from '../components/map-input/map-input.component';
 import { ForestComponent } from '../components/analysis/forest/forest.component';
 import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { FloodComponent } from '../components/analysis/flood/flood.component';
 
 @Component({
   selector: 'app-elaboration-create',
   standalone: true,
-  imports: [NgIf, ItInputComponent, ItSelectComponent, ReactiveFormsModule, MapInputComponent, ForestComponent, ItButtonDirective, RouterLink],
+  imports: [NgIf, ItInputComponent, ItSelectComponent, ReactiveFormsModule, MapInputComponent, ForestComponent, FloodComponent, ItButtonDirective, RouterLink],
   templateUrl: './elaboration-create.component.html',
   styleUrl: './elaboration-create.component.scss'
 })
