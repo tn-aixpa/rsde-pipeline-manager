@@ -87,38 +87,38 @@ export class MapInputComponent implements AfterViewInit{
     this.map.addLayer(this.editableLayers);
     this.map.addControl(this.drawControl);
 
-    L.EditToolbar.include({
-      getActions: function (handler: any) {
-        const actions = [];
+    // L.EditToolbar.include({
+    //   getActions: function (handler: any) {
+    //     const actions = [];
 
-        if (handler.removeAllLayers) {
-          actions.push({
-            title: L.drawLocal.edit.toolbar.actions.clearAll.title,
-            text: L.drawLocal.edit.toolbar.actions.clearAll.text,
-            callback: this._clearAllLayers,
-            context: this,
-          });
-        }
+    //     if (handler.removeAllLayers) {
+    //       actions.push({
+    //         title: L.drawLocal.edit.toolbar.actions.clearAll.title,
+    //         text: L.drawLocal.edit.toolbar.actions.clearAll.text,
+    //         callback: this._clearAllLayers,
+    //         context: this,
+    //       });
+    //     }
 
-        if (handler.type === 'edit') {
-          actions.push({
-            title: L.drawLocal.edit.toolbar.actions.save.title,
-            text: L.drawLocal.edit.toolbar.actions.save.text,
-            callback: this._save,
-            context: this,
-          });
-        }
+    //     if (handler.type === 'edit') {
+    //       actions.push({
+    //         title: L.drawLocal.edit.toolbar.actions.save.title,
+    //         text: L.drawLocal.edit.toolbar.actions.save.text,
+    //         callback: this._save,
+    //         context: this,
+    //       });
+    //     }
 
-        actions.push({
-          title: L.drawLocal.edit.toolbar.actions.cancel.title,
-          text: L.drawLocal.edit.toolbar.actions.cancel.text,
-          callback: this.disable,
-          context: this,
-        });
+    //     actions.push({
+    //       title: L.drawLocal.edit.toolbar.actions.cancel.title,
+    //       text: L.drawLocal.edit.toolbar.actions.cancel.text,
+    //       callback: this.disable,
+    //       context: this,
+    //     });
 
-        return actions;
-      },
-    });
+    //     return actions;
+    //   },
+    // });
 
     this.map.on('draw:created', (e: any) => {
       this.drawEvent.emit(e);

@@ -7,7 +7,7 @@
             </div>
         <div class="bd-example">
         <it-list>
-            <it-list-item iconLeft="true" href="/{{val.id}}" *ngFor="let val of pageData.content" externalLink="true">
+            <it-list-item iconLeft="true" href="javascript:void(0)" routerLink="{{val.id}}" *ngFor="let val of pageData.content" externalLink="true">
                 <it-icon name="check-circle" color="success" icon *ngIf="val.status == 'COMPLETED'"></it-icon>
                 <it-icon name="error" color="danger" icon *ngIf="val.status == 'ERROR'"></it-icon>
                 <it-icon name="clock" color="warning" icon *ngIf="val.status == 'RUNNING'"></it-icon>

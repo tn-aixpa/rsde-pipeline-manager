@@ -5,6 +5,6 @@ import { ElaborationCreateComponent } from './elaboration-create-component/elabo
 
 export const routes: Routes = [
     { path: '', component: ElaborationListComponent },
-    { path: 'create', component: ElaborationCreateComponent, pathMatch: 'full' },
-    { path: ':id', component: ElaborationDetailComponent, pathMatch: 'full' },
+    { path: 'create', component: ElaborationCreateComponent },
+    { path: ':id', component: ElaborationDetailComponent },
 ];
