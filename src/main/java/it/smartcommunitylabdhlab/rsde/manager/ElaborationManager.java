@@ -2,6 +2,7 @@ package it.smartcommunitylabdhlab.rsde.manager;
 
 
 import java.util.Date;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,8 +67,8 @@ public class ElaborationManager {
 		return elaborationService.loadAll(pageable, tag);
     }
 
-    public String getDownloadLink(String id, String name) throws NoSuchElaborationException {
-		return elaborationService.generatePresignedUrl(id, name);
+    public Map<String, String> getDownloadLinks(String id, String name) throws NoSuchElaborationException {
+		return elaborationService.generatePresignedUrls(id, name);
     }
 
 }

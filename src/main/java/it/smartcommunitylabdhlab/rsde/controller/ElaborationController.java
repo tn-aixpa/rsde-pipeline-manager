@@ -1,5 +1,7 @@
 package it.smartcommunitylabdhlab.rsde.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +51,7 @@ public class ElaborationController {
     }
     
     @GetMapping(value = "/{id}/download/{name}")
-    public ResponseEntity<String> downloadLink(@PathVariable String id, @PathVariable String name) throws NoSuchElaborationException {
-        return ResponseEntity.ok(elaManager.getDownloadLink(id, name));
+    public ResponseEntity<Map<String, String>> downloadLinks(@PathVariable String id, @PathVariable String name) throws NoSuchElaborationException {
+        return ResponseEntity.ok(elaManager.getDownloadLinks(id, name));
     }
 }

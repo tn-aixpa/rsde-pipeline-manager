@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -156,7 +157,7 @@ public class ElaborationService {
     }
 
     @SuppressWarnings({ "unchecked" })
-	public String generatePresignedUrl(String id, String name) {
+	public Map<String, String> generatePresignedUrls(String id, String name) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -170,9 +171,18 @@ public class ElaborationService {
 		if (res != null) {
 			Collection<Map<String, Object>> content = (Collection<Map<String, Object>>) res.getOrDefault("content", Collections.emptyList());
 			if (content.size() > 0) {
-				String artifactId = (String) content.iterator().next().get("id");
-				url = dhUrl + postfix + e.getProject() + "/artifacts/" + artifactId + "/files/download";
-				return restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
+				Map<String, Object> element = content.iterator().next();
+				String artifactId = (String) element.get("id");
+				List<String> files = ((List<Map<String, Object>>) ((Map<String, Object>) element.getOrDefault("status", Collections.emptyMap())).getOrDefault("files", Collections.emptyList())).stream().map(m -> (String)m.get("path")).toList();
+				Map<String, String> map = new HashMap<>();				
+				for (String file : files) {
+					url = dhUrl + postfix + e.getProject() + "/artifacts/" + artifactId + "/files/download/" + file;
+					Map<String, Object> body = restTemplate.exchange(url, HttpMethod.GET, entity, new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
+					if (body != null) {
+						map.put(file, body.get("url").toString());
+					}
+				}
+				return map;
 			}
 		}
 		throw new RuntimeException("Artifact not found");

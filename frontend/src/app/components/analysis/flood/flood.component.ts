@@ -45,6 +45,10 @@ export class FloodComponent implements OnInit {
         'parameters',
         this._fb.group({
           floodDate: ['', Validators.required],
+          s1_preFloodDate: ['', Validators.required],
+          s1_postFloodDate: ['', Validators.required],
+          s2_preFloodDate: ['', Validators.required],
+          s2_postFloodDate: ['', Validators.required],
           outputName: ['', Validators.required],
           geometry: ['', Validators.required],
         }),
@@ -55,16 +59,20 @@ export class FloodComponent implements OnInit {
   updateDate(event: any) {
     let v = event.target.value;
     let date = new Date(Date.parse(v));
-    // dd-mm-yyyy
-    v =
-      (date.getDate() > 9 ? date.getDate() : '0' + date.getDate()) +
-      '-' +
-      (date.getMonth() > 8
-        ? date.getMonth() + 1
-        : '0' + (date.getMonth() + 1)) +
-      '-' +
-      date.getFullYear();
-    this.formContainer?.patchValue({ parameters: { floodDate: v } });
+    // yyyy-mm-dd
+    // s1: +- 7 days
+    // s2: +- 20 days
+
+    date.setDate(date.getDate() - 7);
+    let s1_preFloodDate = date.toISOString().split('T')[0];
+    date.setDate(date.getDate() + 14);
+    let s1_postFloodDate = date.toISOString().split('T')[0];
+    date.setDate(date.getDate() - 27);
+    let s2_preFloodDate = date.toISOString().split('T')[0];
+    date.setDate(date.getDate() + 40);
+    let s2_postFloodDate = date.toISOString().split('T')[0];
+
+    this.formContainer?.patchValue({ parameters: { floodDate: v, s1_preFloodDate, s1_postFloodDate, s2_preFloodDate, s2_postFloodDate } });
     this.formContainer?.updateValueAndValidity();
   }
 

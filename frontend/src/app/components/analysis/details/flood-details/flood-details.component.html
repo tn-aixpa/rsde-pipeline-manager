@@ -2,8 +2,11 @@
 
 <div class="row mt-3">
     <div class="col">Data evento: <b>{{elaboration?.parameters?.floodDate | date:'dd/MM/yyyy'}}</b></div>
-    <div class="col">Output: 
-        <b *ngIf="!link">{{elaboration?.parameters?.outputName}}</b>
-        <a [href]="link" *ngIf="link">{{elaboration?.parameters?.outputName}}</a>
+    <div class="col">Outputs: 
+        <div class="row" *ngFor="let link of links">
+            <div class="col">
+                <a [href]="link.value">{{link.name}}</a>
+            </div>
+        </div>
     </div>
 </div>
