@@ -1,40 +1,24 @@
 elaborations:
   - name: flood
-    projectId: parcheggi-scheduler-2025
-    taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
-    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826
+    projectId: protezione-civile
+    taskId: kfp+pipeline://protezione-civile/d1a561c8929e4a0ba851c937d80c86ed
+    workflowId: kfp://protezione-civile/protezione_civile:9d571837bfab4797ac5c6d2bc5e5d411
     tag: water
     fixedParameters:
-      input1: AOI_Garda
-      input2: AOI_Rec.shp
-      input3: Lakes_TN
-      input4: idrspacq.shp
-      input5: Rivers_TN
-      input6: cif_pta2022_v.shp
-
 
   - name: forest
-    projectId: parcheggi-scheduler-2025
-    taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
-    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826
+    projectId: protezione-civile
+    taskId: kfp+pipeline://protezione-civile/d1a561c8929e4a0ba851c937d80c86ed
+    workflowId: kfp://protezione-civile/protezione_civile:9d571837bfab4797ac5c6d2bc5e5d411
     tag: forest
     fixedParameters:
-      input1: bosco
-      input2: data_s2_deforestation
+      shapeArtifactName: bosco
+      dataArtifactName: data_s2_deforestation
 
   - name: land
-    projectId: parcheggi-scheduler-2025
-    taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
-    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826
-    fixedParameters:
-      input1: bosco
-      input2: data_s2_deforestation
-
-  - name: test
-    projectId: parcheggi-scheduler-2025   
-    taskId: kfp+pipeline://parcheggi-scheduler-2025/e933172794e446298fc3e16a5fd25a7d
-    workflowId: kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:e983d1792ffb484f9f44a2eb06d54826
-    tag: forest
+    projectId: protezione-civile
+    taskId: kfp+pipeline://protezione-civile/d1a561c8929e4a0ba851c937d80c86ed
+    workflowId: kfp://protezione-civile/protezione_civile:9d571837bfab4797ac5c6d2bc5e5d411
     fixedParameters:
       input1: bosco
       input2: data_s2_deforestation
