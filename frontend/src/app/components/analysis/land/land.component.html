@@ -1,1 +1,82 @@
-<p>land works!</p>
+<div *ngIf="formContainer" [formGroup]="formContainer">
+  <div class="row mt-3">
+    <div class="col">
+      <app-map-input (drawEvent)="getPolyline($event)"></app-map-input>
+      <div class="form-feedback just-validate-error-label">
+        <!-- Custom errors-->
+        <div
+          *ngIf="
+            formContainer.get('parameters')!.get('geometry')!.touched &&
+            formContainer
+              .get('parameters')!
+              .get('geometry')!
+              .hasError('required')
+          "
+        >
+          Il campo è obbligatorio
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="row mt-3" formGroupName="parameters">
+    <div class="col">
+      <it-input
+        type="date"
+        label="Data inizio"
+        standalone="true"
+        required
+        #startDate
+        (change)="updateStartDate($event)"
+      >
+      </it-input>
+      <div class="form-feedback just-validate-error-label err-m-3">
+        <div
+          *ngIf="
+            formContainer.get('parameters')!.get('startDate')!.touched &&
+            formContainer
+              .get('parameters')!
+              .get('startDate')!
+              .hasError('required')
+          "
+        >
+          Il campo è obbligatorio
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <it-input
+        type="date"
+        label="Data fine"
+        standalone="true"
+        required
+        #endDate
+        (change)="updateEndDate($event)"
+      >
+      </it-input>
+      <div class="form-feedback just-validate-error-label err-m-3">
+        <div
+          *ngIf="
+            formContainer.get('parameters')!.get('endDate')!.touched &&
+            formContainer
+              .get('parameters')!
+              .get('endDate')!
+              .hasError('required')
+          "
+        >
+          Il campo è obbligatorio
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <it-input
+        label="Nome output"
+        placeholder="Nome output"
+        type="text"
+        formControlName="outputName"
+        required
+      ></it-input>
+    </div>
+  </div>
+</div>
