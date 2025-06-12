@@ -1,5 +1,5 @@
 # RS Pipeline Manager
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tn-aixpa/rsde-pipeline-manager/release.yaml?event=release) [![license](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/tn-aixpa/rsde-pipeline-manager/LICENSE) ![GitHub Release](https://img.shields.io/github/v/release/tn-aixpa/rsde-pipeline-manager)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tn-aixpa/rsde-pipeline-manager/maven.yaml?event=release) [![license](https://img.shields.io/badge/license-Apache%202.0-blue)](https://github.com/tn-aixpa/rsde-pipeline-manager/LICENSE) ![GitHub Release](https://img.shields.io/github/v/release/tn-aixpa/rsde-pipeline-manager)
 ![Status](https://img.shields.io/badge/status-beta-silver)
 
 Remote Sensing Pipeline manager provides a GUI and an API for managing the remote sensing data pipelines. It is possible to start and monitor the pipeline execution, download the resulting products.
