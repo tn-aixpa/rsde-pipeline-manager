@@ -5,7 +5,7 @@ spring:
   h2.console.enabled: false
 
 core:
-  token: ${DHCORE_ACCESS_TOKEN:}
+  token: ${ACCESS_TOKEN:}
   apiEndopint: ${DHCORE_ENDPOINT:}
   configUrl: ${CONFIG_URL:classpath:config.yml}  
 
