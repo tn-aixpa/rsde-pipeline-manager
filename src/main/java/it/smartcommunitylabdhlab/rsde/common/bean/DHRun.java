@@ -2,16 +2,16 @@ package it.smartcommunitylabdhlab.rsde.common.bean;
 
 /**
  * 
- * @author engg_nawaz { "project":"parcheggi-scheduler-2025", "kind":"kfp+run",
+ * @author engg_nawaz { "project":"parcheggi-scheduler-2025", "kind":"hera+run",
  *         "spec":{
- *         "task":"kfp+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd",
+ *         "task":"hera+pipeline://parcheggi-scheduler-2025/b874787923cb4ff98aa9258e1a9b31bd",
  *         "local_execution":false,
- *         "workflow":"kfp://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796"}
+ *         "workflow":"hera://parcheggi-scheduler-2025/pipeline_latest_parkings:118af59e538947c1b3b98f27d9f95796"}
  *         }
  */
 public class DHRun {
     private String id;
-    private static final String kind = "kfp+run";
+    private static final String kind = "hera+run";
     private String name;
     private String project;
     private Spec spec;
