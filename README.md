@@ -67,7 +67,7 @@ jdbc:
 ``` 
 To connect the execution to the digitalhub platform, the following properties should be provided:
 
-- ``core.token (DHCORE_ACCESS_TOKEN)``: Core access token (e.g., Personal Access Token) of long duration. 
+- ``core.token (ACCESS_TOKEN)``: Core access token (e.g., Personal Access Token) of long duration. 
 - ``core.apiEndpoint (DHCORE_ENDPOINT)``: Core endpoint address.
 - ``core.configUrl (CONFIG_URL)``: URL of the configuration file (e.g. , http://, file://, or classpath: schemas).
 
